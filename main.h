@@ -58,9 +58,8 @@ typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
 
-int handle_print(const char *fmt, int *x,
-
-va_list listz, char bufferz[], int flagsz, int widthz, int precisionz, int sizez);
+int handle_print(const char *fmt, int *numb, va_list listz, 
+char bufferz[], int flagsz, int widthz, int precisionz, int sizez);
 
 /*
  *==================== The functions of for the program ====================
