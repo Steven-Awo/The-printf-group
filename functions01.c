@@ -14,16 +14,16 @@
 int print_unsigned(va_list typesz, char bufferz[], int flagsz,
 		int widthz, int precisionz, int sizez)
 {
-	int a = BUFF_SIZEz - 2;
+	int a = BUFF_SIZE - 2;
 	unsigned long int numz = va_arg(typesz, unsigned long int);
 
-	numz = convert_sizez_unsgnd(num, sizez);
+	numz = convert_size_unsgnd(numz, sizez);
 	if (numz == 0)
 	{
 	bufferz[a--] = '0';
 	}
 	bufferz[BUFF_SIZE - 1] = '\0';
-	while (num > 0)
+	while (numz > 0)
 	{
 	bufferz[a--] = (numz % 10) + '0';
 	numz /= 10;
@@ -51,7 +51,7 @@ int print_octal(va_list typesz, char bufferz[], int flagsz,
 	unsigned long int init_num = numz;
 
 	UNUSED(widthz);
-	numz = convert_sizez_unsgnd(numz, sizez);
+	numz = convert_size_unsgnd(numz, sizez);
 	if (numz == 0)
 	{
 	bufferz[a--] = '0';
@@ -120,7 +120,7 @@ int print_hexa_upper(va_list typesz, char bufferz[], int flagsz,
  * Return: Number of chars printed
  */
 
-int print_hexa(va_list typesz, char map_to[], char bufferz[], int flagsz,
+int print_hexa(va_list typesz, char map_toz[], char bufferz[], int flagsz,
 		char flag_ch, int widthz, int precisionz, int sizez)
 {
 	int a = BUFF_SIZE - 2;
@@ -128,7 +128,7 @@ int print_hexa(va_list typesz, char map_to[], char bufferz[], int flagsz,
 	unsigned long int init_num = numz;
 
 	UNUSED(widthz);
-	numz = convert_sizez_unsgnd(numz, sizez);
+	numz = convert_size_unsgnd(numz, sizez);
 	if (numz == 0)
 	{
 	bufferz[a--] = '0';
@@ -136,7 +136,7 @@ int print_hexa(va_list typesz, char map_to[], char bufferz[], int flagsz,
 	bufferz[BUFF_SIZE - 1] = '\0';
 	while (numz > 0)
 	{
-	bufferz[--] = map_to[num % 16];
+	bufferz[a--] = map_toz[numz % 16];
 	numz /= 16;
 	}
 	if (flagsz & F_HASH && init_num != 0)

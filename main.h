@@ -4,7 +4,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-#define BUFF_SIZE
+#define BUFF_SIZE 1024
 
 #define UNUSED(x) (void)(x)
 
@@ -87,13 +87,13 @@ int print_hexadecimal(va_list typesz, char bufferz[], int flagsz,
 int print_hexa_upper(va_list typesz, char bufferz[], int flagsz,
 		int widthz, int precisionz, int sizez);
 
-int print_hexa(va_list typesz, char map_toz[], char buffer[]z,
+int print_hexa(va_list typesz, char map_toz[], char bufferz[],
 		int flagsz, char flag_chs, int widthz, int precisionz, int sizez);
 
 /*
  *======= The functions to print strings and characters ==============
  */
-int print_char(va_list typesz, char buffer[]z, int flagsz, int widthz,
+int print_char(va_list typesz, char bufferz[], int flagsz, int widthz,
 		int precisionz, int sizez);
 
 int print_string(va_list typesz, char bufferz[], int flagsz,
@@ -114,7 +114,7 @@ int print_reverse(va_list typesz, char bufferz[], int flagsz,
  */
 
 int print_non_printable(va_list typesz, char bufferz[], int flagsz,
-		int widthz, int precisionz, int sizez)
+	int widthz, int precisionz, int sizez);
 
 /*
  *========= A function that prints the address of a memory ========
@@ -171,8 +171,8 @@ int append_hexa_code(char, char[], int);
 
 int is_digit(char);
 
-long int convert_size_number(long int num, int size);
+long int convert_size_number(long int numz, int size);
 
-long int convert_size_unsgnd(unsigned long int num, int size);
+long int convert_size_unsgnd(unsigned long int numz, int size);
 
 #endif

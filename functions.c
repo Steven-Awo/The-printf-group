@@ -117,7 +117,7 @@ int print_int(va_list typesz, char bufferz[], int flagsz,
 	long int b = va_arg(typesz, long int);
 	unsigned long int numz;
 
-	b = convert_sizez_number(n, sizez);
+	b = convert_size_number(b, sizez);
 	if (b == 0)
 	{
 	bufferz[a--] = '0';
@@ -173,9 +173,9 @@ int print_binary(va_list typesz, char bufferz[],
 	for (e = 0, sumz = 0, countz = 0; e < 32; e++)
 	{
 	sumz += a[e];
-	if (sum || i == 31)
+	if (sumz || e == 31)
 	{
-	char z = '0' + a[i];
+	char z = '0' + a[e];
 
 	write(1, &z, 1);
 	countz++;

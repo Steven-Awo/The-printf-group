@@ -26,14 +26,14 @@ int handle_write_char(char x, char bufferz[],
 	bed = '0';
 	}
 	bufferz[a++] = x;
-	buffer[a] = '\0';
+	bufferz[a] = '\0';
 
 	if (widthz > 1)
 	{
 	bufferz[BUFF_SIZE - 1] = '\0';
 	for (x = 0; x < widthz - 1; x++)
 	{
-	bufferz[BUFF_SIZE - i - 2] = bed;
+	bufferz[BUFF_SIZE - a - 2] = bed;
 	}
 	if (flagsz & F_MINUS)
 	{
@@ -109,7 +109,7 @@ int write_num(int numb, char bufferz[], int flagsz, int widthz,
 	int a;
 	int bg_pd = 1;
 
-	if (precz == 0 && numbz == BUFF_SIZE - 2 && bufferz[numb] == '0' &&
+	if (precz == 0 && numb == BUFF_SIZE - 2 && bufferz[numb] == '0' &&
 			widthz == 0)
 		return (0);/* printf(".0d", 0) no char is printed*/
 	if (precz == 0 && numb == BUFF_SIZE - 2 && bufferz[numb] == '0')
@@ -118,33 +118,33 @@ int write_num(int numb, char bufferz[], int flagsz, int widthz,
 		paddz = ' ';
 	while (precz > lengthz)
 		bufferz[--numb] = '0', lengthz++;
-	if (ext_c != 0)
+	if (extra_cz != 0)
 		lengthz++;
 	if (widthz > lengthz)
 	{
 	for (a = 1; a < widthz - lengthz + 1; a++)
 		bufferz[a] = paddz;
-	buffer[a] = '\0';
+	bufferz[a] = '\0';
 	if (flagsz & F_MINUS && paddz == ' ')/* Asign extra char to left of buffer */
-		if (ext_c)
-			bufferz[--numb] = ext_c;
-		return (write(1, &bufferz[numb], lengthz) + write(1, &bufferz[1], a - 1));
+	{
+	if (extra_cz)
+		bufferz[--numb] = extra_cz;
+	return (write(1, &bufferz[numb], lengthz) + write(1, &bufferz[1], a - 1));
+	}
 	else if (!(flagsz & F_MINUS) && paddz == ' ')/* extra char to left of buff */
 	{
-	if (ext_c)
-		bufferz[--numb] = ext_c;
-	return (write(1, &buffera[1], a - 1) + write(1, &bufferz[numb], lengthz));
+	if (extra_cz)
+		bufferz[--numb] = extra_cz;
+	return (write(1, &bufferz[1], a - 1) + write(1, &bufferz[numb], lengthz));
 	}
-	else if (!(flagsz & F_MINUS) && paddz == '0')/* extra char to left of padd */
-	{
-	if (ext_c)
-		bufferz[--bg_pd] = ext_c;
-	return (write(1, &bufferz[bg_pd], a - bg_pd) +
-		write(1, &bufferz[numb], len - (1 - bg_pd)));
-	}
-	}
-	if (ext_c)
-		bufferz[--numb] = ext_c;
+	else if (!(flagsz & F_MINUS) && paddz == '0') /* extra char to padd */
+	{	if (extra_cz)
+			bufferz[--bg_pd] = extra_cz;
+		return (write(1, &bufferz[bg_pd], a - bg_pd) +
+			write(1, &bufferz[numb], lengthz - (1 - bg_pd)));
+	}}
+	if (extra_cz)
+		bufferz[--numb] = extra_cz;
 	return (write(1, &bufferz[numb], lengthz));
 }
 
@@ -182,15 +182,15 @@ int write_unsgnd(int is_negativez, int numb, char bufferz[],
 	bufferz[--numb] = '0';
 	len++;
 	}
-	if ((flags & F_ZERO) && !(flags & F_MINUS))
+	if ((flagsz & F_ZERO) && !(flagsz & F_MINUS))
 	{
 	padz = '0';
 	}
 	if (widthz > len)
 	{
 	for (a = 0; a < widthz - len; a++)
-		buffer[a] = padz;
-	buffer[i] = '\0';
+		bufferz[a] = padz;
+	bufferz[a] = '\0';
 	if (flagsz & F_MINUS) /* Asign extra char to left of buffer [bufferz > padz]*/
 	{
 	return (write(1, &bufferz[numb], len) + write(1, &bufferz[0], a));
