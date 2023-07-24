@@ -151,7 +151,7 @@ int print_int(va_list typesz, char bufferz[], int flagsz,
  */
 
 int print_binary(va_list typesz, char bufferz[],
-	int flagsz, int widthz, int precisionz, int sizez)
+		int flagsz, int widthz, int precisionz, int sizez)
 {
 	unsigned int b, d, e, sumz;
 	unsigned int a[32];

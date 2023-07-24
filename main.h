@@ -171,8 +171,7 @@ int append_hexa_code(char, char[], int);
 
 int is_digit(char);
 
-long int convert_size_number(long int numz, int size);
+long int convert_size_number(long int numz, int sizez);
 
-long int convert_size_unsgnd(unsigned long int numz, int size);
-
+unsigned long int convert_size_unsgnd(unsigned long int numz, int sizez);
 #endif

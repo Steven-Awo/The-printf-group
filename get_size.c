@@ -11,17 +11,17 @@ int get_size(const char *format, int *x)
 
 {
 	int bagx = *x + 1;
-	int siz = 0;
+	int size = 0;
 
 	if (format[bagx] == 'l')
 	{
-	siz = S_LONG;
+	size = S_LONG;
 	}
 	else if (format[bagx] == 'h')
 	{
-	siz = S_SHORT;
+	size = S_SHORT;
 	}
-	if (siz == 0)
+	if (size == 0)
 	{
 	*x = bagx - 1;
 	}
@@ -29,5 +29,5 @@ int get_size(const char *format, int *x)
 	{
 	*x = bagx;
 	}
-	return (siz);
+	return (size);
 }
